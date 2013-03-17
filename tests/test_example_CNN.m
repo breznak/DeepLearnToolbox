@@ -19,12 +19,11 @@ cnn.layers = {
     struct('type', 's', 'scale', 2) %subsampling layer
 };
 cnn = cnnsetup(cnn, train_x, train_y);
-
 cnn.alpha = 1;
 cnn.batchsize = 50;
 cnn.numepochs = 1;
 
-cnn = cnntrain(cnn, train_x, train_y, opts);
+cnn = nntrain(cnn, train_x, train_y, opts, test_x, test_y);
 
 [er, bad] = cnntest(cnn, test_x, test_y);
 
@@ -36,3 +35,4 @@ xlabel('steps');
 ylabel('error');
 
 assert(er<0.12, 'Too big error');
+end
